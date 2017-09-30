@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="colorTheme">#485f80</color>
+    <color name="colorLoginInputTextTheme">#FFF</color>
+    <color name="colorLoginHintTheme">#6d85ff</color>
+    <color name="colorLoginButtonBackground">#1f1f43</color>
+    <color name="colorBroadBack">#f9e9e9</color>
+    <color name="colorBroadCard">#ffffff</color>
+    <color name="colorUsername">#ec4949</color>
+    <color name="colorInfo">#000000</color>
+    <color name="colorMenuBar">#c2baba</color>
+    <color name="colorMenuItem">#efe9e9</color>
+    <color name="colorInput">#000000</color>
+    <color name="colorCenter">#485f80</color>
+    <color name="colorDective">#707070</color>
+    <color name="colorActive">#ffffff</color>
+    <color name="colorDivider">#f1ebeb</color>
+    <color name="colorDeepDivider">#ccc</color>
+    <color name="colorFontActive">#485f80</color>
+</resources>

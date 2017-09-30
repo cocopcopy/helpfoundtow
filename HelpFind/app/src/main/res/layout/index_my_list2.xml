@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#fff" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/dimen_center_item_padding" >
+
+        <ImageView android:padding="3dp"
+            android:layout_width="@dimen/dimen_list_item"
+            android:layout_height="@dimen/dimen_list_item"
+            android:src="@drawable/lost"/>
+
+        <TextView
+            android:id="@+id/cpj_ever_lost"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dimen_list_item"
+            android:layout_weight="1"
+            android:drawablePadding="3dp"
+            android:gravity="center_vertical"
+            android:text="我曾马虎丢过的东西"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:layout_width="@dimen/dimen_new"
+            android:layout_height="@dimen/dimen_new"
+            android:src="@drawable/arrow_right" />
+    </LinearLayout>
+
+    <View
+        android:layout_marginLeft="11dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f0f0f0" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="@dimen/dimen_center_item_padding" >
+
+        <ImageView android:padding="7dp"
+            android:layout_width="@dimen/dimen_list_item"
+            android:layout_height="@dimen/dimen_list_item"
+            android:src="@drawable/find"/>
+
+        <TextView
+            android:id="@+id/cpj_ever_found"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="3dp"
+            android:gravity="center_vertical"
+            android:text="我曾助人寻回的物品"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:gravity="center_vertical"
+            android:text="有用的textview"
+            android:visibility="gone" />
+
+        <ImageView
+            android:layout_width="@dimen/dimen_new"
+            android:layout_height="@dimen/dimen_new"
+            android:src="@drawable/arrow_right" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="#f0f0f0" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="@dimen/dimen_center_item_padding" >
+
+        <ImageView android:padding="4dp"
+            android:layout_width="@dimen/dimen_list_item"
+            android:layout_height="@dimen/dimen_list_item"
+            android:src="@drawable/score"/>
+
+        <TextView
+            android:id="@+id/cpj_contribution"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="3dp"
+            android:gravity="center_vertical"
+            android:text="我的贡献分"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:gravity="center_vertical"
+            android:text="0"
+            android:visibility="visible"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="#f0f0f0" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="@dimen/dimen_center_item_padding">
+
+        <ImageView android:padding="6dp"
+            android:layout_width="@dimen/dimen_list_item"
+            android:layout_height="@dimen/dimen_list_item"
+            android:src="@drawable/friend"/>
+
+        <TextView
+            android:id="@+id/cpj_friends"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="3dp"
+            android:gravity="center_vertical"
+            android:text="我的好友"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:layout_width="@dimen/dimen_new"
+            android:layout_height="@dimen/dimen_new"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/new_icon" />
+
+        <ImageView
+            android:layout_width="@dimen/dimen_new"
+            android:layout_height="@dimen/dimen_new"
+            android:src="@drawable/arrow_right" />
+    </LinearLayout>
+
+    <View
+        android:layout_marginLeft="11dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f0f0f0" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="@dimen/dimen_center_item_padding">
+
+        <ImageView android:padding="6dp"
+            android:layout_width="@dimen/dimen_list_item"
+            android:layout_height="@dimen/dimen_list_item"
+            android:src="@drawable/thanks"/>
+
+        <TextView
+            android:id="@+id/cpj_receive_thanks"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="3dp"
+            android:gravity="center_vertical"
+            android:text="我获得的感谢"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:layout_width="@dimen/dimen_new"
+            android:layout_height="@dimen/dimen_new"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/new_icon" />
+
+        <ImageView
+            android:layout_width="@dimen/dimen_new"
+            android:layout_height="@dimen/dimen_new"
+            android:src="@drawable/arrow_right" />
+    </LinearLayout>
+
+    <View
+        android:layout_marginLeft="11dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f0f0f0" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="@dimen/dimen_center_item_padding">
+
+        <ImageView android:padding="5dp"
+            android:layout_width="@dimen/dimen_list_item"
+            android:layout_height="@dimen/dimen_list_item"
+            android:src="@drawable/give"/>
+
+        <TextView
+            android:id="@+id/cpj_given_thanks"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="3dp"
+            android:gravity="center_vertical"
+            android:text="我的打赏"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:layout_width="@dimen/dimen_new"
+            android:layout_height="@dimen/dimen_new"
+            android:src="@drawable/arrow_right" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="#f0f0f0" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="@dimen/dimen_center_item_padding" >
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="@dimen/dimen_list_item"
+            android:layout_height="@dimen/dimen_list_item"
+            android:padding="6dp"
+            android:src="@drawable/setting" />
+
+        <TextView
+            android:id="@+id/cpj_settings"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="3dp"
+            android:gravity="center_vertical"
+            android:text="设置"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:layout_width="@dimen/dimen_new"
+            android:layout_height="@dimen/dimen_new"
+            android:src="@drawable/arrow_right" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="#f0f0f0" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="@dimen/dimen_center_item_padding" >
+
+        <ImageView android:padding="9dp"
+            android:layout_width="@dimen/dimen_list_item"
+            android:layout_height="@dimen/dimen_list_item"
+            android:src="@drawable/more"/>
+
+        <TextView
+            android:id="@+id/cpj_more"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="3dp"
+            android:gravity="center_vertical"
+            android:text="更多的条目"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:layout_width="@dimen/dimen_new"
+            android:layout_height="@dimen/dimen_new"
+            android:src="@drawable/arrow_right" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="#f0f0f0" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="@dimen/dimen_center_item_padding" >
+
+        <TextView
+            android:id="@+id/cpj_logout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="3dp"
+            android:gravity="center"
+            android:text="注销"
+            android:padding="6dp"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+
+    <View
+        android:layout_marginLeft="11dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f0f0f0" />
+
+</LinearLayout>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <com.amap.api.maps.MapView
+        android:id="@+id/id_bmapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true" />
+
+    <RadioGroup android:id="@+id/rg_map_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton android:id="@+id/rb_normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="普通模式"/>
+
+        <RadioButton android:id="@+id/rb_sate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="卫星模式"/>
+
+        <RadioButton android:id="@+id/rb_night"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="夜间模式"/>
+
+    </RadioGroup>
+
+    <ImageView
+        android:layout_marginTop="70dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/btn_person_center"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/me" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/btn_add_marker"
+        android:layout_margin="10dp"
+        android:layout_below="@id/btn_person_center"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/help"
+        android:clickable="true" />
+
+    <LinearLayout
+        android:id="@+id/id_maker_ly"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:background="#000"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom"
+        android:clickable="true"
+        android:visibility="gone" >
+
+        <ImageView
+            android:id="@+id/id_info_img"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="centerInside"
+            android:layout_centerVertical="true">
+        </ImageView>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="#FFE4B5"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="手机"
+                android:textSize="18dp"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentTop="true"
+                android:textColor="#A2CD5A"
+                />
+
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="成都"
+                android:textColor="#A2CD5A"
+                android:textSize="15dp"
+                android:layout_below="@id/name"
+                android:layout_marginTop="8dp"/>
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2017／08／10"
+                android:textSize="15dp"
+                android:layout_below="@id/address"
+                android:textColor="#A2CD5A"
+                android:layout_marginTop="8dp"/>
+
+
+            <ImageView
+                android:id="@+id/check"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/check"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginBottom="10dp"
+                android:clickable="true" />
+
+            <ImageView
+                android:id="@+id/collection"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/collection"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="12dp"
+                android:layout_marginBottom="10dp"
+                android:clickable="true" />
+
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>
+
+
+
+

@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">HelpFind</string>
+    <string name="account_hint">账户</string>
+    <string name="email_hint">邮箱</string>
+    <string name="password_hint">密码</string>
+    <string name="string_open_map">打开地图</string>
+    <string name="string_item_nearby_title">这是标题</string>
+    <string name="string_item_nearby_username">{username}</string>
+    <string name="string_item_nearby_time">{time spam}</string>
+    <string name="string_img_index">%1$d/%2$d</string>
+    <string name="string_load_more">Load More…</string>
+    <string name="string_open_map_hint">打开地图，查看更多消息...</string>
+    <string name="string_me_description">me</string>
+    <string name="string_et_broadcast">发布信息</string>
+    <string name="string_iv_broadcast_search">search</string>
+    <string name="string_menu_broadcast">首页</string>
+    <string name="string_menu_finding">Finding</string>
+    <string name="string_menu_lost">Lost</string>
+    <string name="string_menu_center">Center</string>
+    <string name="string_signup_link_hint">还没有账户？创建一个</string>
+    <string name="string_login_link_hint">已经有账户，登陆</string>
+</resources>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true"
+    android:background="@color/colorTheme"
+    tools:context="com.example.andrew.helpfind.SignUpActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="56dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <ImageView android:src="@drawable/logo_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/logo_height"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="50dp"/>
+
+        <!--Account label-->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="8dp">
+
+            <EditText android:id="@+id/input_sign_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/account_hint"
+                android:inputType="text"
+                android:textColor="@color/colorLoginInputTextTheme"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <!--Email label-->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+
+            <EditText android:id="@+id/input_sign_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/email_hint"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/colorLoginInputTextTheme"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <!--Password label-->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+
+            <EditText android:id="@+id/input_sign_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/password_hint"
+                android:inputType="textPassword"
+                android:textColor="@color/colorLoginInputTextTheme"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <!--Sign Up button-->
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_signup"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@color/colorLoginButtonBackground"
+            android:text="创建账户"
+            android:textAllCaps="false"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:padding="12dp"
+            android:textSize="16sp" />
+
+        <!--Link to login-->
+        <TextView android:id="@+id/link_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="@string/string_login_link_hint"
+            android:gravity="center"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+</ScrollView>

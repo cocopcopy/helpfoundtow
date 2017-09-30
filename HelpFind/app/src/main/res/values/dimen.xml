@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="logo_height">100dp</dimen>
+    <dimen name="activity_broadcast_head">48dp</dimen>
+    <dimen name="dimen_menu_bar">33dp</dimen>
+    <dimen name="dimen_center_me">50dp</dimen>
+    <dimen name="dimen_list_item">40dp</dimen>
+    <dimen name="dimen_new">10dp</dimen>
+    <dimen name="dimen_center_item_padding">5dp</dimen>
+    <dimen name="dimen_divider">0.5dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="me_height">80dp</dimen>
+</resources>
