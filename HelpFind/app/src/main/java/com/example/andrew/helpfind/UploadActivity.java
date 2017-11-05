@@ -25,6 +25,10 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationClient;
+import com.amap.api.location.AMapLocationClientOption;
+import com.amap.api.location.AMapLocationListener;
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVFile;
 import com.avos.avoscloud.AVGeoPoint;
@@ -82,6 +86,11 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
     private int minute;
     private int second;
     private Date time = null;
+    public AMapLocationClient mLocationClient = null;
+
+    public AMapLocationClientOption mLocationOption = null;
+    public double jingdu,weidu;
+    String add;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +103,54 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
         ButterKnife.bind(this);
 
         initView();
+        //声明AMapLocationClient类对象
+
+//声明定位回调监听器
+
+//初始化定位
+        mLocationClient = new AMapLocationClient(getApplicationContext());
+//设置定位回调监听
+        AMapLocationListener mAMapLocationListener = new AMapLocationListener(){
+            @Override
+            public void onLocationChanged(AMapLocation amapLocation) {
+                if (amapLocation != null) {
+                    if (amapLocation.getErrorCode() == 0) {
+//可在其中解析amapLocation获取相应内容。
+                        weidu = amapLocation.getLatitude();//获取纬度
+                        jingdu = amapLocation.getLongitude();//获取经度
+                        add = amapLocation.getAddress();
+                    }else {
+                        //定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。
+                        Log.e("AmapError","location Error, ErrCode:"
+                                + amapLocation.getErrorCode() + ", errInfo:"
+                                + amapLocation.getErrorInfo());
+                    }
+                }
+            }
+        };
+        mLocationClient.setLocationListener(mAMapLocationListener);
+        //声明AMapLocationClientOption对象
+
+//初始化AMapLocationClientOption对象
+        mLocationOption = new AMapLocationClientOption();
+        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
+//获取一次定位结果：
+//该方法默认为false。
+        mLocationOption.setOnceLocation(true);
+
+//获取最近3s内精度最高的一次定位结果：
+//设置setOnceLocationLatest(boolean b)接口为true，启动定位时SDK会返回最近3s内精度最高的一次定位结果。如果设置其为true，setOnceLocation(boolean b)接口也会被设置为true，反之不会，默认为false。
+        mLocationOption.setOnceLocationLatest(true);
+        mLocationOption.setNeedAddress(true);
+        mLocationOption.setHttpTimeOut(20000);
+        mLocationOption.setLocationCacheEnable(true);
+        //给定位客户端对象设置定位参数
+        mLocationClient.setLocationOption(mLocationOption);
+//启动定位
+        mLocationClient.startLocation();
+
+
+
         initData();
     }
 
@@ -116,6 +173,8 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
                 // Another interface callback
             }
         });
+
+
     }
 
     private void initData() {
@@ -171,14 +230,17 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
         notice.put("describe", describe.getText().toString());
         notice.put("time", time);
 
-        notice.put("geo", new AVGeoPoint(30.78373 + Math.random() * 50, 103 + Math.random() * 50));
+
+        // notice.put("geo", new AVGeoPoint(30.78373 + Math.random() * 50, 103 + Math.random() * 50));
+        notice.put("geo", new AVGeoPoint(weidu, jingdu));
         notice.put("user", AVObject.createWithoutData("UserProfile", StaticData.getUserProfileId()));
         notice.put("img", new AVFile("pic", mImageBytes));
         notice.put("question", question.getText().toString());
         notice.put("answer", answer.getText().toString());
         notice.put("tag", tag);
 
-        notice.put("address", searchButton.getText().toString());
+        // notice.put("address", searchButton.getText().toString());
+        notice.put("address", add);
 
         final ProgressDialog progressDialog = new ProgressDialog(UploadActivity.this,
                 ProgressDialog.STYLE_SPINNER);

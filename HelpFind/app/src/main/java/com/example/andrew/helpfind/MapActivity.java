@@ -218,7 +218,7 @@ public class MapActivity extends AppCompatActivity implements View.OnClickListen
             String info = ele.get_info();
             if (info != null && info.length() > 20) info = info.substring(0, 20);
             mMap.addMarker(new MarkerOptions().position(latLng)
-                    .title(ele.get_title()).snippet(info + ";" + ele.get_userPhotoURL() + ";" + ele.get_id()));
+                    .title(ele.get_title()).snippet(info + ";" + "点击查看详情"  + ";" + ele.get_id()));
         }
     }
 
