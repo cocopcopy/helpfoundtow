@@ -38,7 +38,7 @@ public class MyCenterActivity extends Activity implements OnClickListener {
 	@BindView(R.id.sr_simple) SwipeRefreshLayout refreshLayout;
 
 	public static final String KEYWORD = "KEYWORD";
-	public static final String NOW_FIND = "Find";
+	public static final String NOW_FIND = "Found";
 	public static final String NOW_LOST = "Lost";
 	public static final String EVER_LOST = "EverLost";
 	public static final String EVER_FIND = "EverFind";
