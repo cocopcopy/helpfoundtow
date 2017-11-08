@@ -1,0 +1,14 @@
+HelpFind/*.iml
+HelpFind/.gradle
+HelpFind/local.properties
+HelpFind/.idea/workspace.xml
+HelpFind/.idea/libraries
+HelpFind/.DS_Store
+HelpFind/build
+HelpFind/captures
+HelpFind.externalNativeBuild
+HelpFind/.idea/*
+HelpFind/gradle*
+HelpFind/gradle/*
+HelpFind/build*
+HelpFind/setting*

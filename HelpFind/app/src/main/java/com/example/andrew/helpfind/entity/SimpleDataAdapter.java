@@ -104,6 +104,7 @@ public class SimpleDataAdapter extends RecyclerView.Adapter<SimpleDataAdapter.Vi
             int current = getAdapterPosition();
             Intent intent = new Intent(mContext, CardDetailActivity.class);
             intent.putExtra(CardDetailActivity.INFO_ID, mData.get(current).get_id());
+            intent.putExtra("entrance","simple");
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             mContext.startActivity(intent);
         }

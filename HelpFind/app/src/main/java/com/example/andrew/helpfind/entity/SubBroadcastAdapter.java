@@ -194,6 +194,7 @@ public class SubBroadcastAdapter extends RecyclerView.Adapter<SubBroadcastAdapte
             current = (mHeaderView == null ? current : current - 1);
             Intent intent = new Intent(mContext, CardDetailActivity.class);
             intent.putExtra(CardDetailActivity.INFO_ID, mData.get(current).get_id());
+            intent.putExtra("entrance","main");
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             mContext.startActivity(intent);
         }

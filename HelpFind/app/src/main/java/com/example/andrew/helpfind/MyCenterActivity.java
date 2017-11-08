@@ -114,6 +114,7 @@ public class MyCenterActivity extends Activity implements OnClickListener {
 		//TODO: get more data
 		AVQuery<AVObject> query = new AVQuery<>("Notice");
 		query.whereEqualTo("tag", FLAG);
+		query.whereEqualTo("status","in");
 		query.orderByAscending("createdAt");
 		query.limit(num);
 		query.skip(lastPos);
