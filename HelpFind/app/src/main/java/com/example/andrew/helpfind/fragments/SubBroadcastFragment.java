@@ -165,6 +165,7 @@ public class SubBroadcastFragment extends Fragment {
         AVQuery<AVObject> query = new AVQuery<>("Notice");
         query.orderByAscending("createdAt");
         query.whereEqualTo("tag", dataType);
+        query.whereEqualTo("status","in");
         query.limit(num);
         query.skip(lastPos);
         query.include("user");
