@@ -161,7 +161,6 @@ public class SubBroadcastFragment extends Fragment {
         String dataType = "Found";
         if (currentType == 1) dataType = "Lost";
 
-        //TODO: get more data
         AVQuery<AVObject> query = new AVQuery<>("Notice");
         query.orderByAscending("createdAt");
         query.whereEqualTo("tag", dataType);

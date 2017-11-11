@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.andrew.helpfind.fragments.BroadcastSquareFragment;
 import com.example.andrew.helpfind.fragments.FakeFragment;
 import com.example.andrew.helpfind.fragments.MyCenterFragment;
+import com.example.andrew.helpfind.fragments.SearchFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,11 +29,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static final String FRAGMENT_ID = "FragmentId";
 
     private BroadcastSquareFragment _broadcastFragment;
-    private MyCenterFragment _centerFragment;
     //    EaseUI
 //    private EaseConversationListFragment _conversationListFragment;
 //    替代的_conversationListFragment，这是一个Fake
     private FakeFragment _conversationListFragment;
+    private SearchFragment searchFragment;
+    private MyCenterFragment _centerFragment;
+
+
 
     private int FLAG_FRAGMENT = 0;
 
@@ -42,6 +46,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.tv_center) TextView centerHint;
     @BindView(R.id.iv_menu_conversation) ImageView switcherConversation;
     @BindView(R.id.tv_chat) TextView chatHint;
+    @BindView(R.id.iv_menu_search) ImageView switcherSearch;
+    @BindView(R.id.tv_search) TextView searchHint;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,31 +65,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switcherBroadcast.setOnClickListener(this);
         switcherMe.setOnClickListener(this);
         switcherConversation.setOnClickListener(this);
+        switcherSearch.setOnClickListener(this);
+
 
         FLAG_FRAGMENT = getIntent().getIntExtra(FRAGMENT_ID, -1);
 
         if (savedInstanceState == null) {
             setDefaultFragment();
         } else {
-            if (FLAG_FRAGMENT == 2) {
-                _centerFragment = (MyCenterFragment) getSupportFragmentManager().getFragment(savedInstanceState, "fragment");
-            } else if (FLAG_FRAGMENT <= 0) {
+            if (FLAG_FRAGMENT <= 0) {
                 _broadcastFragment = (BroadcastSquareFragment) getSupportFragmentManager().getFragment(savedInstanceState, "fragment");
-            } else if (FLAG_FRAGMENT == 1) {
+            } else if (FLAG_FRAGMENT == 0) {
+                _conversationListFragment = (FakeFragment) getSupportFragmentManager().getFragment(savedInstanceState, "fragment");
+            } else if (FLAG_FRAGMENT == 2) {
+                searchFragment = (SearchFragment) getSupportFragmentManager().getFragment(savedInstanceState, "fragment");
 //                EaseUI
 //                _conversationListFragment = (EaseConversationListFragment) getFragmentManager().getFragment(savedInstanceState, "fragment");
+            } else if (FLAG_FRAGMENT == 3) {
+                _centerFragment = (MyCenterFragment) getSupportFragmentManager().getFragment(savedInstanceState, "fragment");
             }
-
         }
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        if (FLAG_FRAGMENT == 2)
-            getSupportFragmentManager().putFragment(outState, "fragment", _centerFragment);
-        else if (FLAG_FRAGMENT == 0)
-            getSupportFragmentManager().putFragment(outState, "fragment", _broadcastFragment);
+//        if (FLAG_FRAGMENT == 3)
+//            getSupportFragmentManager().putFragment(outState, "fragment", _centerFragment);
+//        else if (FLAG_FRAGMENT == 0)
+//            getSupportFragmentManager().putFragment(outState, "fragment", _broadcastFragment);
+//        else if (FLAG_FRAGMENT == 1)
+//            getSupportFragmentManager().putFragment(outState, "fragment", _conversationListFragment);
+//        else if (FLAG_FRAGMENT == 2)
+//            getSupportFragmentManager().putFragment(outState, "fragment", searchFragment);
 //        else if (FLAG_FRAGMENT == 1) getFragmentManager().putFragment(outState, "fragment", _conversationListFragment); EaseUI
     }
 
@@ -93,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
 
+        // 将当前的图标给gray掉
         switch (FLAG_FRAGMENT) {
             case 0:
                 switcherBroadcast.setImageResource(R.drawable.home);
@@ -102,11 +117,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 switcherConversation.setImageResource(R.drawable.conversation);
                 chatHint.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.colorDective));
             case 2:
+                switcherSearch.setImageResource(R.drawable.search);
+                searchHint.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.colorDective));
+            case 3:
                 switcherMe.setImageResource(R.drawable.center);
                 centerHint.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.colorDective));
                 break;
         }
 
+        // 再把点击的图给active起来
         switch (v.getId()) {
             case R.id.iv_menu_broadcast:
                 if (null == _broadcastFragment) {
@@ -138,12 +157,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 chatHint.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.colorFontActive));
                 switcherConversation.setImageResource(R.drawable.conversation_active);
                 break;
+            case R.id.iv_menu_search:
+                if (null == searchFragment) {
+                    searchFragment = new SearchFragment();
+                    transaction.add(R.id.fl_activity_main, searchFragment);
+                }
+                FLAG_FRAGMENT = 2;
+                hideFragment(transaction);
+                transaction.show(searchFragment);
+                searchHint.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.colorFontActive));
+                switcherSearch.setImageResource(R.drawable.search_active);
+                break;
             case R.id.iv_menu_center:
                 if (null == _centerFragment) {
                     _centerFragment = new MyCenterFragment();
                     transaction.add(R.id.fl_activity_main, _centerFragment);
                 }
-                FLAG_FRAGMENT = 2;
+                FLAG_FRAGMENT = 3;
                 hideFragment(transaction);
                 transaction.show(_centerFragment);
                 centerHint.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.colorFontActive));
@@ -165,7 +195,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             transaction.add(R.id.fl_activity_main, _broadcastFragment);
             transaction.commit();
             FLAG_FRAGMENT = 0;
-        } else if (FLAG_FRAGMENT == 2) {
+        } else if (FLAG_FRAGMENT == 3) {
             switcherBroadcast.setImageResource(R.drawable.center_active);
             centerHint.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.colorFontActive));
             _centerFragment = new MyCenterFragment();
@@ -179,6 +209,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             _conversationListFragment = new FakeFragment();
             transaction.add(R.id.fl_activity_main, _conversationListFragment);
             transaction.commit();
+        } else if (FLAG_FRAGMENT == 3) {
+            switcherSearch.setImageResource(R.drawable.search_active);
+            searchHint.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.colorFontActive));
+            searchFragment = new SearchFragment();
+            transaction.add(R.id.fl_activity_main, searchFragment);
+            transaction.commit();
         }
     }
 
@@ -186,5 +222,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (_broadcastFragment != null) transaction.hide(_broadcastFragment);
         if (_centerFragment != null) transaction.hide(_centerFragment);
         if (_conversationListFragment != null) transaction.hide(_conversationListFragment);
+        if (searchFragment != null) transaction.hide(searchFragment);
     }
 }
