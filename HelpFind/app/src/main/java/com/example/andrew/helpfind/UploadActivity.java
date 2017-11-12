@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amap.api.location.AMapLocation;
@@ -52,8 +53,7 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
 
     @Nullable @BindView(R.id.et_notice_title)
     EditText title;
-    @Nullable @BindView(R.id.et_search_address)
-    EditText searchButton;
+
     @Nullable @BindView(R.id.et_notice_describe)
     EditText describe;
     @Nullable @BindView(R.id.et_notice_que)
@@ -66,6 +66,15 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
     ImageView img;
     @Nullable @BindView(R.id.btn_upload)
     Button btnUpload;
+    @Nullable @BindView(R.id.add_address)
+    EditText addAddress;
+    @Nullable @BindView(R.id.cur_address)
+    Button curAddress;
+    @Nullable @BindView(R.id.cur_textadd)
+    TextView curTextadd;
+    @Nullable @BindView(R.id.icon)
+    ImageView locate_icon;
+
 
     private Uri photoUri;
     private String picPath;
@@ -101,8 +110,6 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
 
         setContentView(R.layout.activity_upload);
         ButterKnife.bind(this);
-
-        initView();
         //声明AMapLocationClient类对象
 
 //声明定位回调监听器
@@ -149,15 +156,18 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
 //启动定位
         mLocationClient.startLocation();
 
-
+        initView();
 
         initData();
     }
 
     //时间初始化
     private void initView() {
+        curTextadd.setText(add);
         img.setOnClickListener(this);
         btnUpload.setOnClickListener(this);
+        curAddress.setOnClickListener(this);
+        locate_icon.setOnClickListener(this);
 
         tagSelector.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -166,6 +176,15 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
 
                 String[] tags = getResources().getStringArray(R.array.tag);
                 tag = tags[pos];
+                if(tag.equals("Found")){
+                    question.setVisibility(View.VISIBLE);
+                    answer.setVisibility(View.VISIBLE);
+                }
+                else if(tag.equals("Lost")){
+                    question.setVisibility(View.GONE);
+                    answer.setVisibility(View.GONE);
+                }
+
                 Toast.makeText(UploadActivity.this, "你点击的是:" + tags[pos], Toast.LENGTH_SHORT).show();
             }
             @Override
@@ -215,6 +234,13 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.btn_upload:
                 upLoad();
                 break;
+            case R.id.cur_address:
+                curTextadd.setText(add);
+                addAddress.setText(add);
+                break;
+            case R.id.icon:
+                curTextadd.setText(add);
+                break;
             default:
                 break;
         }
@@ -240,7 +266,7 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
         notice.put("tag", tag);
 
         // notice.put("address", searchButton.getText().toString());
-        notice.put("address", add);
+        notice.put("address", addAddress.getText().toString());
 
         final ProgressDialog progressDialog = new ProgressDialog(UploadActivity.this,
                 ProgressDialog.STYLE_SPINNER);
@@ -277,14 +303,14 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
             describe.setError("描述信息不能为空！");
             return false;
         }
-        if (_question.equals("")) {
-            question.setError("请输入问题！");
-            return false;
-        }
-        if (_answer.equals("")) {
-            answer.setError("请输入答案！");
-            return false;
-        }
+//        if (_question.equals("")) {
+//            question.setError("请输入问题！");
+//            return false;
+//        }
+//        if (_answer.equals("")) {
+//            answer.setError("请输入答案！");
+//            return false;
+//        }
         return true;
     }
 

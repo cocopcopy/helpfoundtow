@@ -110,6 +110,7 @@ public class SubBroadcastFragment extends Fragment {
         _swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+
                 getMore(10);
             }
         });
