@@ -92,7 +92,7 @@ public class CardDetailActivity extends AppCompatActivity implements View.OnClic
         btn_infodetail_certain=(Button) findViewById(R.id.btn_InfoDetail_certain);
 
         //从我的失物拾物进入则设置确认按钮可见
-        if(entrance.equals("simple")){
+        if(entrance != null && entrance.equals("simple")){
             btn_infodetail_certain.setVisibility(View.VISIBLE);
         }
         //按钮点击后确认找回

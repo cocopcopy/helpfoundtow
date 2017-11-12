@@ -110,6 +110,7 @@ public class SubBroadcastFragment extends Fragment {
         _swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+
                 getMore(10);
             }
         });
@@ -161,7 +162,6 @@ public class SubBroadcastFragment extends Fragment {
         String dataType = "Found";
         if (currentType == 1) dataType = "Lost";
 
-        //TODO: get more data
         AVQuery<AVObject> query = new AVQuery<>("Notice");
         query.orderByAscending("createdAt");
         query.whereEqualTo("tag", dataType);

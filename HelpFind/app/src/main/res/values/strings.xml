@@ -17,6 +17,7 @@
     <string name="string_menu_finding">Finding</string>
     <string name="string_menu_lost">Lost</string>
     <string name="string_menu_center">Center</string>
+    <string name="string_menu_search">Search</string>
     <string name="string_signup_link_hint">还没有账户？创建一个</string>
     <string name="string_login_link_hint">已经有账户，登陆</string>
 </resources>

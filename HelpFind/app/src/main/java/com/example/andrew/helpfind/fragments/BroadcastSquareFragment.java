@@ -9,8 +9,15 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.ActionMenuView;
+import android.support.v7.widget.SearchView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -40,14 +47,12 @@ import butterknife.ButterKnife;
 
 public class BroadcastSquareFragment extends Fragment {
 
-    @BindView(R.id.iv_broadcast_me) ImageView _me; // link to CenterFragment
-    @BindView(R.id.iv_broadcast_search) ImageView _search;    // link to searching panel
     @BindView(R.id.tv_broadcast) TextView _makeBroadcast;  // link to DistributeFragment
     @BindView(R.id.tl_broad_tab) TabLayout mTabLayout;
     @BindView(R.id.vp_broad) ViewPager mViewPager;
+    @BindView(R.id.iv_broadcast_me) ImageView _me; // link to CenterFragment
 
     private Context mContext;
-
 
     public static BroadcastSquareFragment newInstance() {
         BroadcastSquareFragment fragment = new BroadcastSquareFragment();
@@ -68,6 +73,32 @@ public class BroadcastSquareFragment extends Fragment {
         initialView();
 
         return v;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        // 这里把原来的发布改成了menu选项
+        inflater.inflate(R.menu.menu_search, menu);
+        final MenuItem itemNewPost = menu.findItem(R.id.new_post);
+
+        // 设置makepost的点击时间,能够跳到upload界面
+        itemNewPost.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                if (StaticData.getCurrentUser() == null) {
+                    Intent intent = new Intent(getContext(), LoginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    getContext().startActivity(intent);
+                } else {
+                    Intent intent = new Intent(getContext(), UploadActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    getContext().startActivity(intent);
+                }
+                return true;
+            }
+        });
+
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     /**

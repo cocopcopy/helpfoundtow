@@ -112,37 +112,107 @@ public class MyCenterActivity extends Activity implements OnClickListener {
 
 	private void getMore(final int num) {
 		//TODO: get more data
-		AVQuery<AVObject> query = new AVQuery<>("Notice");
-		query.whereEqualTo("tag", FLAG);
-		query.whereEqualTo("status","in");
-		query.orderByAscending("createdAt");
-		query.limit(num);
-		query.skip(lastPos);
-		query.whereEqualTo("user", AVObject.createWithoutData("UserProfile", StaticData.getUserProfileId()));
-		query.findInBackground(new FindCallback<AVObject>() {
-			@Override
-			public void done(List<AVObject> list, AVException e) {
-				if (e != null) {
-					Toast.makeText(MyCenterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-					return;
-				}
+		if(FLAG.equals("Found")||FLAG.equals("Lost")) {
+			AVQuery<AVObject> query = new AVQuery<>("Notice");
+			query.whereEqualTo("tag", FLAG);
+			query.whereEqualTo("status", "in");
+			query.orderByAscending("createdAt");
+			query.limit(num);
+			query.skip(lastPos);
+			query.whereEqualTo("user", AVObject.createWithoutData("UserProfile", StaticData.getUserProfileId()));
+			query.findInBackground(new FindCallback<AVObject>() {
+				@Override
+				public void done(List<AVObject> list, AVException e) {
+					if (e != null) {
+						Toast.makeText(MyCenterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+						return;
+					}
 
-				for (AVObject avObject : list) {
-					CardUser cardUser = new CardUser(avObject.getObjectId(), avObject.getString("title"),
-							avObject.getString("describe"));
-					mData.add(0, cardUser);
-				}
+					for (AVObject avObject : list) {
+						CardUser cardUser = new CardUser(avObject.getObjectId(), avObject.getString("title"),
+								avObject.getString("describe"));
+						mData.add(0, cardUser);
+					}
 
-				refreshLayout.setRefreshing(false);
-				if (list.size() == 0) {
-					Toast.makeText(getBaseContext(), "没有更多数据了！", Toast.LENGTH_SHORT).show();
-					return ;
-				}
+					refreshLayout.setRefreshing(false);
+					if (list.size() == 0) {
+						Toast.makeText(getBaseContext(), "没有更多数据了！", Toast.LENGTH_SHORT).show();
+						return;
+					}
 
-				mAdapter.notifyDataSetChanged();
-				lastPos += list.size();
-			}
-		});
+					mAdapter.notifyDataSetChanged();
+					lastPos += list.size();
+				}
+			});
+		}
+		 else if(FLAG.equals("EverFind")) {
+			AVQuery<AVObject> query = new AVQuery<>("Notice");
+			query.whereEqualTo("tag", "Found");
+			query.whereEqualTo("status", "out");
+			query.orderByAscending("createdAt");
+			query.limit(num);
+			query.skip(lastPos);
+			query.whereEqualTo("user", AVObject.createWithoutData("UserProfile", StaticData.getUserProfileId()));
+			query.findInBackground(new FindCallback<AVObject>() {
+				@Override
+				public void done(List<AVObject> list, AVException e) {
+					if (e != null) {
+						Toast.makeText(MyCenterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+						return;
+					}
+
+					for (AVObject avObject : list) {
+						CardUser cardUser = new CardUser(avObject.getObjectId(), avObject.getString("title"),
+								avObject.getString("describe"));
+						mData.add(0, cardUser);
+					}
+
+					refreshLayout.setRefreshing(false);
+					if (list.size() == 0) {
+						Toast.makeText(getBaseContext(), "没有更多数据了！", Toast.LENGTH_SHORT).show();
+						return;
+					}
+
+					mAdapter.notifyDataSetChanged();
+					lastPos += list.size();
+				}
+			});
+		}
+
+		else if(FLAG.equals("EverLost")) {
+			AVQuery<AVObject> query = new AVQuery<>("Notice");
+			query.whereEqualTo("tag", "Lost");
+			query.whereEqualTo("status", "out");
+			query.orderByAscending("createdAt");
+			query.limit(num);
+			query.skip(lastPos);
+			query.whereEqualTo("user", AVObject.createWithoutData("UserProfile", StaticData.getUserProfileId()));
+			query.findInBackground(new FindCallback<AVObject>() {
+				@Override
+				public void done(List<AVObject> list, AVException e) {
+					if (e != null) {
+						Toast.makeText(MyCenterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+						return;
+					}
+
+					for (AVObject avObject : list) {
+						CardUser cardUser = new CardUser(avObject.getObjectId(), avObject.getString("title"),
+								avObject.getString("describe"));
+						mData.add(0, cardUser);
+					}
+
+					refreshLayout.setRefreshing(false);
+					if (list.size() == 0) {
+						Toast.makeText(getBaseContext(), "没有更多数据了！", Toast.LENGTH_SHORT).show();
+						return;
+					}
+
+					mAdapter.notifyDataSetChanged();
+					lastPos += list.size();
+				}
+			});
+		}
+
 	}
 
 	/**

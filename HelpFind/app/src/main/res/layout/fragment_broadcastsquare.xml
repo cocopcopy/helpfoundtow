@@ -25,27 +25,18 @@
             android:contentDescription="@string/string_me_description" />
 
 
+
         <TextView android:id="@+id/tv_broadcast"
             android:layout_width="0dp"
             android:layout_weight="7"
             android:layout_height="match_parent"
             android:hint="@string/string_et_broadcast"
             android:textColorHint="#d7bfbf"
-            android:paddingStart="10dp"
+            android:paddingStart="40dp"
             android:paddingEnd="10dp"
             android:gravity="center_vertical"
             android:textSize="14sp"
             android:background="@null" />
-
-        <ImageView android:id="@+id/iv_broadcast_search"
-            android:layout_width="0dp"
-            android:layout_gravity="center_vertical"
-            android:layout_height="match_parent"
-            android:padding="4dp"
-            android:layout_marginRight="5dp"
-            android:src="@drawable/search"
-            android:layout_weight="1"
-            android:contentDescription="@string/string_iv_broadcast_search" />
 
     </LinearLayout>
 
