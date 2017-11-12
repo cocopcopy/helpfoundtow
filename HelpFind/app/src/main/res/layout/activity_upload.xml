@@ -38,19 +38,6 @@
                 android:textColor="@color/colorActive"
                 android:textAlignment="center"
                 android:background="@color/colorCenter"/>
-
-
-            <EditText
-                android:id="@+id/et_search_address"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/open_search_style"
-                android:hint="搜索附近地点"
-                android:padding="10dp" />
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -58,19 +45,79 @@
                 android:layout_marginTop="20dp"
                 android:textSize="18sp"
                 android:layout_marginLeft="10dp"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#a18b8b"
-                android:layout_margin="10dp"/>
-
             <android.support.v7.widget.AppCompatSpinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:entries="@array/tag"
                 android:layout_margin="10dp"
                 android:id="@+id/spinner_tag" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#a18b8b"
+                android:layout_margin="10dp"/>
+
+            <EditText
+                android:id="@+id/add_address"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:textColor="@android:color/white"
+                android:layout_margin="12dp"
+                android:textSize="20sp"
+                android:hint="请输入物品相关的地址"
+                android:textColorHint="#faf8f8"
+                android:padding="18dp"
+                android:gravity="center"
+                android:background="@android:color/darker_gray"
+                android:focusable="true"
+                android:focusableInTouchMode="true"/>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/cur_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@android:color/darker_gray"
+                    android:textColor="#faf8f8"
+                    android:text="定位并使用当前地址"
+                    android:padding="10dp" />
+                <ImageView
+                    android:id="@+id/icon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/locate_big"
+                    android:layout_toRightOf="@id/cur_address"/>
+                <TextView
+                    android:id="@+id/cur_textadd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/darker_gray"
+                    android:text="成都市成都市成都市成都市成都市成都市成都市成都市成都市成都市成都市"
+                    android:layout_marginTop="20dp"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="20dp"
+                    android:layout_toRightOf="@id/icon"
+                    android:layout_marginLeft="10dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    />
+            </RelativeLayout>
+
+
+
+
+
+
+
 
             <EditText
                 android:id="@+id/et_notice_title"
@@ -120,6 +167,7 @@
                 android:gravity="center"
                 android:background="@android:color/darker_gray"
                 android:focusable="true"
+                android:visibility="gone"
                 android:focusableInTouchMode="true"/>
 
             <EditText
@@ -137,6 +185,7 @@
                 android:gravity="center"
                 android:background="@android:color/darker_gray"
                 android:focusable="true"
+                android:visibility="gone"
                 android:focusableInTouchMode="true"/>
 
 
