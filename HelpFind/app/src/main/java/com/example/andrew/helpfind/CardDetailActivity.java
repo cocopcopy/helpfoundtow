@@ -11,8 +11,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVFile;
@@ -20,6 +22,7 @@ import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.GetCallback;
+import com.avos.avoscloud.SaveCallback;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 
@@ -52,6 +55,9 @@ public class CardDetailActivity extends AppCompatActivity implements View.OnClic
     private String mId;
     private String userProfileId;
     private String userName;
+    private String entrance;
+
+    private Button btn_infodetail_certain;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -82,6 +88,39 @@ public class CardDetailActivity extends AppCompatActivity implements View.OnClic
 
         Intent extract = getIntent();
         mId = extract.getStringExtra(INFO_ID);
+        entrance= extract.getStringExtra("entrance");
+        btn_infodetail_certain=(Button) findViewById(R.id.btn_InfoDetail_certain);
+
+        //从我的失物拾物进入则设置确认按钮可见
+        if(entrance != null && entrance.equals("simple")){
+            btn_infodetail_certain.setVisibility(View.VISIBLE);
+        }
+        //按钮点击后确认找回
+        btn_infodetail_certain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AVObject notice = AVObject.createWithoutData("Notice", mId);
+
+                // 修改 content
+                notice.put("status","out");
+                // 保存到云端
+                notice.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(AVException e) {
+                        if (e!=null){
+                            Toast.makeText(getApplicationContext(), "确认失败",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            Toast.makeText(getApplicationContext(), "确认成功",
+                                    Toast.LENGTH_SHORT).show();
+                            btn_infodetail_certain.setText("已确认");
+                            btn_infodetail_certain.setEnabled(false);
+                        }
+                    }
+                });
+            }
+        });
 
         init();
 
