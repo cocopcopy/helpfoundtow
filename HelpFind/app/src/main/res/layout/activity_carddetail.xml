@@ -18,6 +18,14 @@
         android:background="@color/colorCenter"
         android:fitsSystemWindows="true"
         app:theme="@style/AppTheme.PopupOverlay">
+        <ImageView
+            android:id="@+id/btn_focus_on"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/focus_out"
+            android:layout_gravity="right"
+            android:visibility="gone"
+            android:layout_marginRight="10dp"/>
 
     </android.support.v7.widget.Toolbar>
 

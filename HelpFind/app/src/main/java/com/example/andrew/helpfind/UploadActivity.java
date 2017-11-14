@@ -264,6 +264,7 @@ public class UploadActivity extends AppCompatActivity implements View.OnClickLis
         notice.put("question", question.getText().toString());
         notice.put("answer", answer.getText().toString());
         notice.put("tag", tag);
+        notice.put("findowner",false);
 
         // notice.put("address", searchButton.getText().toString());
         notice.put("address", addAddress.getText().toString());

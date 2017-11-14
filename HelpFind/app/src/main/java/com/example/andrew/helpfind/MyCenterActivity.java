@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
+import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.FindCallback;
 import com.example.andrew.helpfind.entity.CardUser;
 import com.example.andrew.helpfind.entity.SimpleDataAdapter;
@@ -42,8 +43,10 @@ public class MyCenterActivity extends Activity implements OnClickListener {
 	public static final String NOW_LOST = "Lost";
 	public static final String EVER_LOST = "EverLost";
 	public static final String EVER_FIND = "EverFind";
+	public static final String FOCUS="Focus";
+	public static  final AVUser currentUser = AVUser.getCurrentUser();
 
-	private String FLAG;
+	public String FLAG;
 	private int lastPos = 0;
 
 	private ArrayList<CardUser> mData;
@@ -74,7 +77,7 @@ public class MyCenterActivity extends Activity implements OnClickListener {
 		RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getBaseContext(),
 				LinearLayoutManager.VERTICAL, false);
 		simpleList.setLayoutManager(mLayoutManager);
-		mAdapter = new SimpleDataAdapter(mData, getBaseContext());
+		mAdapter = new SimpleDataAdapter(mData, getBaseContext(),FLAG);
 		AlphaAnimatorAdapter animatorAdapter = new AlphaAnimatorAdapter(mAdapter, simpleList);
 		simpleList.setAdapter(animatorAdapter);
 
@@ -198,6 +201,40 @@ public class MyCenterActivity extends Activity implements OnClickListener {
 					for (AVObject avObject : list) {
 						CardUser cardUser = new CardUser(avObject.getObjectId(), avObject.getString("title"),
 								avObject.getString("describe"));
+						mData.add(0, cardUser);
+					}
+
+					refreshLayout.setRefreshing(false);
+					if (list.size() == 0) {
+						Toast.makeText(getBaseContext(), "没有更多数据了！", Toast.LENGTH_SHORT).show();
+						return;
+					}
+
+					mAdapter.notifyDataSetChanged();
+					lastPos += list.size();
+				}
+			});
+		}
+
+		else if(FLAG.equals("Focus")){
+			AVQuery<AVObject> query = new AVQuery<>("Focus");
+			query.orderByDescending("createdAt");
+			query.limit(num);
+			query.skip(lastPos);
+			query.whereEqualTo("user", currentUser);
+			query.include("notice");// 关键代码，用 include 告知服务端需要返回的关联属性对应的对象的详细信息，而不仅仅是 objectId
+			query.findInBackground(new FindCallback<AVObject>() {
+				@Override
+				public void done(List<AVObject> list, AVException e) {
+					if (e != null) {
+						Toast.makeText(MyCenterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+						return;
+					}
+
+					for (AVObject avObject : list) {
+						AVObject notice=avObject.getAVObject("notice");
+						CardUser cardUser = new CardUser(notice.getObjectId(), notice.getString("title"),
+								notice.getString("describe"));
 						mData.add(0, cardUser);
 					}
 

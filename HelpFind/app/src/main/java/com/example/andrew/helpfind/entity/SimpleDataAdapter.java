@@ -25,15 +25,17 @@ public class SimpleDataAdapter extends RecyclerView.Adapter<SimpleDataAdapter.Vi
 
     private ArrayList<CardUser> mData;
     private Context mContext;
+    private  String entrance;
 
     public static final int TYPE_FOOTER = 1;
     public static final int TYPE_NORMAL = 2;
 
     private View mFooterView = null;
 
-    public SimpleDataAdapter(ArrayList<CardUser> data, Context context) {
+    public SimpleDataAdapter(ArrayList<CardUser> data, Context context,String entrance) {
         this.mContext = context;
         this.mData = data;
+        this.entrance=entrance;
     }
 
     @Override
@@ -104,7 +106,7 @@ public class SimpleDataAdapter extends RecyclerView.Adapter<SimpleDataAdapter.Vi
             int current = getAdapterPosition();
             Intent intent = new Intent(mContext, CardDetailActivity.class);
             intent.putExtra(CardDetailActivity.INFO_ID, mData.get(current).get_id());
-            intent.putExtra("entrance","simple");
+            intent.putExtra("entrance",entrance);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             mContext.startActivity(intent);
         }

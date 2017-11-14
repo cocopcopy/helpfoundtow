@@ -52,6 +52,7 @@ public class MyCenterFragment extends Fragment implements View.OnClickListener {
 	@BindView(R.id.cpj_logout) TextView cpj_logout;
 	@BindView(R.id.index_my_list1_touxiang) ImageView cpj_me;
 	@BindView(R.id.cpj_username) TextView cpj_username;
+	@BindView(R.id.cpj_contribution_number) TextView cpj_contribution_number;
 
 	private int RESULT_LOAD_IMAGE = 0;
 	private int RESULT_CAMERA_IMAGE = 1;
@@ -63,6 +64,8 @@ public class MyCenterFragment extends Fragment implements View.OnClickListener {
 		View view = inflater.inflate(R.layout.index_my, container, false);
 		ButterKnife.bind(this, view);
 		initView();
+
+		cpj_contribution_number.setText(""+AVUser.getCurrentUser().getInt("contributionScore"));
 		return view;
 	}
 
@@ -117,7 +120,7 @@ public class MyCenterFragment extends Fragment implements View.OnClickListener {
 				launchActivity(MyCenterActivity.NOW_LOST);
 				break;
 			case R.id.cpj_focus:
-				Toast.makeText(getActivity(), "Login", Toast.LENGTH_SHORT).show();
+				launchActivity(MyCenterActivity.FOCUS);
 				break;
 			case R.id.cpj_now_found:
 				launchActivity(MyCenterActivity.NOW_FIND);

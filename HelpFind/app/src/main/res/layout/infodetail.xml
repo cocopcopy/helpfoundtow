@@ -107,6 +107,36 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp">
+
+            <TextView
+                android:id="@+id/question_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:text="验证问题:"/>
+            <TextView
+                android:id="@+id/verification_quesion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:paddingLeft="5dp"
+                android:textSize="20dp"
+                android:text="answer"/>
+
+
+        </LinearLayout>
+
+
+
         <Button
             android:id="@+id/btn_InfoDetail_certain"
             android:layout_width="match_parent"
@@ -117,6 +147,7 @@
             android:textColor="#fff"
             android:layout_marginTop="10dp"
             android:background="@color/colorCenter"/>
+
 
         <View
             android:layout_width="match_parent"
